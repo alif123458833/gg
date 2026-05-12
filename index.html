@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daftar Pelawat</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff8c00, #ffb347);
+      overflow: hidden;
+    }
+
+    .background-circle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      animation: float 6s infinite ease-in-out;
+    }
+
+    .circle1 {
+      width: 200px;
+      height: 200px;
+      top: -50px;
+      left: -50px;
+    }
+
+    .circle2 {
+      width: 300px;
+      height: 300px;
+      bottom: -100px;
+      right: -100px;
+      animation-delay: 2s;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(20px);
+      }
+    }
+
+    .container {
+      width: 90%;
+      max-width: 420px;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      border-radius: 25px;
+      padding: 35px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      color: white;
+      position: relative;
+      z-index: 2;
+    }
+
+    .title {
+      text-align: center;
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      text-align: center;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 14px;
+      outline: none;
+      font-size: 15px;
+      background: rgba(255,255,255,0.9);
+    }
+
+    textarea {
+      resize: none;
+      height: 90px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 14px;
+      background: white;
+      color: #ff8c00;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      transform: scale(1.03);
+      background: #fff3e0;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 13px;
+      opacity: 0.8;
+    }
+
+    .success-message {
+      display: none;
+      margin-top: 20px;
+      text-align: center;
+      background: rgba(255,255,255,0.2);
+      padding: 12px;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="background-circle circle1"></div>
+  <div class="background-circle circle2"></div>
+
+  <div class="container">
+    
+    <div id="screen1">
+      <div class="title">Daftar Pelawat</div>
+      <div class="subtitle">Sila isi maklumat pelawat</div>
+
+      <form id="visitorForm">
+        <div class="input-group">
+          <label>Nama Pelawat</label>
+          <input type="text" placeholder="Masukkan nama" required>
+        </div>
+
+        <div class="input-group">
+          <label>Tujuan Lawatan</label>
+          <input type="text" placeholder="Contoh: Mesyuarat" required>
+        </div>
+
+        <div class="input-group">
+          <label>Masa</label>
+          <input type="time" required>
+        </div>
+
+        <div class="input-group">
+          <label>Catatan</label>
+          <textarea placeholder="Masukkan catatan jika ada"></textarea>
+        </div>
+
+        <button type="submit" class="btn">Hantar</button>
+      </form>
+    </div>
+
+    <div id="screen2" style="display:none; text-align:center;">
+      <div class="title">Berjaya!</div>
+      <div class="subtitle">Maklumat pelawat telah dihantar</div>
+
+      <button class="btn" onclick="backScreen()">
+        Kembali
+      </button>
+    </div>
+
+    <div class="success-message" id="successMessage">
+      ✅ Maklumat berjaya dihantar!
+    </div>
+
+    <div class="footer">
+      Website Daftar Pelawat
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('visitorForm');
+    const successMessage = document.getElementById('successMessage');
+    const screen1 = document.getElementById('screen1');
+    const screen2 = document.getElementById('screen2');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      screen1.style.display = 'none';
+      screen2.style.display = 'block';
+
+      form.reset();
+    });
+
+    function backScreen() {
+      screen2.style.display = 'none';
+      screen1.style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
